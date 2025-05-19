@@ -40,8 +40,15 @@ const LoginView: React.FC<LoginViewProps> = ({ route }) => {
       >
         Senha
       </Text>
-      <InputWithIcon iconName="lock-outline" placeholder="Insira sua senha" />
-      <Button title="Entrar" onPress={() => {}} />
+      <InputWithIcon
+        iconName="lock-outline"
+        placeholder="Insira sua senha"
+        secureTextEntry
+      />
+      <Button
+        title="Entrar"
+        onPress={() => route.push("/my-statistics-screen")}
+      />
       <TouchableOpacity
         onPress={() => route.push("/verify-email")}
         style={{ marginTop: 12 }}

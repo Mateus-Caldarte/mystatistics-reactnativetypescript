@@ -1,21 +1,33 @@
 import React from "react";
-import { GestureResponderEvent, Text, TouchableOpacity } from "react-native";
+import {
+  GestureResponderEvent,
+  StyleProp,
+  Text,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 
 interface ButtonProps {
   title: string;
   onPress?: (event: GestureResponderEvent) => void;
+  style?: StyleProp<ViewStyle>;
+  disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ title, onPress }) => {
+const Button: React.FC<ButtonProps> = ({ title, onPress, style, disabled }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={{
-        backgroundColor: "#0C78B6",
-        paddingVertical: 12,
-        borderRadius: 6,
-        marginTop: 32,
-      }}
+      style={[
+        {
+          backgroundColor: "#0C78B6",
+          paddingVertical: 12,
+          borderRadius: 6,
+          marginTop: 32,
+        },
+        style,
+      ]}
+      disabled={disabled}
     >
       <Text
         style={{
