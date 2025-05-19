@@ -31,7 +31,7 @@ const VerifyEmail = ({}: VerifyEmailProps) => {
     const maskedEmail = maskEmail(email);
     route.push({
       pathname: "/verify-code",
-      params: { maskedEmail },
+      params: { maskedEmail, email },
     });
   };
 

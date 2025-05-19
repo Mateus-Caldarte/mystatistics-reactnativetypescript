@@ -1,84 +1,68 @@
 import { createReducer, PayloadAction } from "@reduxjs/toolkit";
-import { CepData, Types } from "./Models";
 
-/**
- * Estado inicial
- */
-interface InitialState {
-  isLoading: boolean;
-  isError: boolean;
-  cepData: CepData | null;
+interface TipoUsuario {
+  id: number;
+  codigo: number;
+  nome: string;
+  descricao: string;
 }
 
-export const initialState: InitialState = {
+export interface AuthData {
+  id: number;
+  nome: string;
+  email: string;
+  token: string;
+  tipoUsuario: TipoUsuario;
+}
+
+interface AuthState {
+  isLoading: boolean;
+  isError: boolean;
+  data: AuthData | null;
+}
+
+const initialState: AuthState = {
   isLoading: false,
   isError: false,
-  cepData: null,
+  data: null,
 };
 
-/**
- * Reducer
- */
-export const viacepReducer = createReducer(initialState, (builder) => {
+export const Types = {
+  REQUEST: "AUTH/REQUEST",
+  SUCCESS: "AUTH/SUCCESS",
+  FAILURE: "AUTH/FAILURE",
+  CLEAR: "AUTH/CLEAR",
+};
+
+export const authReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(Types.REQUEST, (state) => {
       state.isLoading = true;
       state.isError = false;
-      state.cepData = null;
+      state.data = null;
     })
-    .addCase(Types.SUCCESS, (state, action: PayloadAction<CepData>) => {
+    .addCase(Types.SUCCESS, (state, action: PayloadAction<AuthData>) => {
       state.isLoading = false;
       state.isError = false;
-      state.cepData = action.payload;
+      state.data = action.payload;
     })
     .addCase(Types.FAILURE, (state) => {
       state.isLoading = false;
       state.isError = true;
-      state.cepData = null;
+      state.data = null;
     })
     .addCase(Types.CLEAR, (state) => {
       state.isLoading = false;
       state.isError = false;
-      state.cepData = null;
+      state.data = null;
     });
 });
 
-/**
- * Actions
- */
-export type RequestAction = {
-  type: typeof Types.REQUEST;
-  payload: string;
-};
-
-export type SuccessAction = {
-  type: typeof Types.SUCCESS;
-  payload: CepData;
-};
-
-export type FailureAction = {
-  type: typeof Types.FAILURE;
-};
-
-export type ClearAction = {
-  type: typeof Types.CLEAR;
-};
-
 export const Creators = {
-  request: (cep: string): RequestAction => ({
-    type: Types.REQUEST,
-    payload: cep,
-  }),
-  success: (data: CepData): SuccessAction => ({
-    type: Types.SUCCESS,
-    payload: data,
-  }),
-  failure: (): FailureAction => ({
-    type: Types.FAILURE,
-  }),
-  clear: (): ClearAction => ({
-    type: Types.CLEAR,
-  }),
+  request: () => ({ type: Types.REQUEST }),
+  success: (data: AuthData) => ({ type: Types.SUCCESS, payload: data }),
+  failure: () => ({ type: Types.FAILURE }),
+  clear: () => ({ type: Types.CLEAR }),
 };
 
-export default viacepReducer;
+export default authReducer;

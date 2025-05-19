@@ -9,7 +9,7 @@ const VerifyCode = ({}: VerifyCodeProps) => {
   const [code, setCode] = useState(["", "", "", "", ""]);
   const [isFocused, setIsFocused] = useState(false);
   const inputs = useRef<Array<TextInput | null | undefined>>([]);
-  const { maskedEmail } = useLocalSearchParams();
+  const { maskedEmail, email } = useLocalSearchParams();
 
   const handleChange = (value: string, index: number) => {
     const newCode = [...code];

@@ -17,7 +17,7 @@ const ResetPasswordView: React.FC<ResetPasswordViewProps> = ({
     <View
       style={{ flex: 1, padding: 20, backgroundColor: "#fff", marginTop: 48 }}
     >
-      <GoBack text="Esqueci a senha" onPress={() => route.push("/login")} />
+      <GoBack text="Esqueci a senha" onPress={() => route.back()} />
       <Text
         style={{
           fontSize: 24,

@@ -4,15 +4,16 @@ import { Text, TouchableOpacity, View } from "react-native";
 import InputWithIcon from "../../atomic/atoms/Input";
 import { LoginViewProps } from "./Models";
 
-const LoginView: React.FC<LoginViewProps> = ({ route }) => {
+const LoginView: React.FC<LoginViewProps> = ({
+  handleLogin,
+  email,
+  setEmail,
+  senha,
+  setSenha,
+  route,
+}) => {
   return (
-    <View
-      style={{
-        padding: 20,
-        marginTop: 50,
-        justifyContent: "center",
-      }}
-    >
+    <View style={{ padding: 20, marginTop: 50, justifyContent: "center" }}>
       <Text
         style={{
           fontSize: 18,
@@ -34,6 +35,8 @@ const LoginView: React.FC<LoginViewProps> = ({ route }) => {
         iconName="email-outline"
         placeholder="Insira seu email"
         keyboardType="default"
+        value={email}
+        onChangeText={setEmail}
       />
       <Text
         style={{ fontSize: 14, color: "#000", marginTop: 12, marginBottom: 14 }}
@@ -44,11 +47,10 @@ const LoginView: React.FC<LoginViewProps> = ({ route }) => {
         iconName="lock-outline"
         placeholder="Insira sua senha"
         secureTextEntry
+        value={senha}
+        onChangeText={setSenha}
       />
-      <Button
-        title="Entrar"
-        onPress={() => route.push("/my-statistics-screen")}
-      />
+      <Button title="Entrar" onPress={handleLogin} />
       <TouchableOpacity
         onPress={() => route.push("/verify-email")}
         style={{ marginTop: 12 }}
