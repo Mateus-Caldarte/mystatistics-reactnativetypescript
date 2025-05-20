@@ -4,7 +4,7 @@ Este é um projeto [Expo](https://expo.dev) criado com [`create-expo-app`](https
 
 ## ⬇️ Clonando o projeto
 
-Para clonar este repositório e iniciar o desenvolvimento, use o comando abaixo para garantir que você está na branch principal `develop`:
+Para clonar este repositório, use o comando abaixo para garantir que você está na branch principal `develop`:
 
 ```bash
 git clone https://github.com/Mateus-Caldarte/mystatistics-reactnativetypescript.git
