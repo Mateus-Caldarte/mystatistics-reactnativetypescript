@@ -1,25 +1,11 @@
 import { createReducer, PayloadAction } from "@reduxjs/toolkit";
-
-interface TipoUsuario {
-  id: number;
-  codigo: number;
-  nome: string;
-  descricao: string;
-}
-
-export interface AuthData {
-  id: number;
-  nome: string;
-  email: string;
-  token: string;
-  tipoUsuario: TipoUsuario;
-}
-
-interface AuthState {
-  isLoading: boolean;
-  isError: boolean;
-  data: AuthData | null;
-}
+import {
+  AuthData,
+  AuthState,
+  TotalizadoresData,
+  TotalizadoresState,
+} from "./Models";
+// -------------------- AUTH --------------------
 
 const initialState: AuthState = {
   isLoading: false,
@@ -65,4 +51,57 @@ export const Creators = {
   clear: () => ({ type: Types.CLEAR }),
 };
 
-export default authReducer;
+// -------------------- TOTALIZADORES --------------------
+
+const initialTotalizadoresState: TotalizadoresState = {
+  isLoading: false,
+  isError: false,
+  data: null,
+};
+
+export const TotalizadoresTypes = {
+  REQUEST: "TOTALIZADORES/REQUEST",
+  SUCCESS: "TOTALIZADORES/SUCCESS",
+  FAILURE: "TOTALIZADORES/FAILURE",
+  CLEAR: "TOTALIZADORES/CLEAR",
+};
+
+export const totalizadoresReducer = createReducer(
+  initialTotalizadoresState,
+  (builder) => {
+    builder
+      .addCase(TotalizadoresTypes.REQUEST, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.data = null;
+      })
+      .addCase(
+        TotalizadoresTypes.SUCCESS,
+        (state, action: PayloadAction<TotalizadoresData>) => {
+          state.isLoading = false;
+          state.isError = false;
+          state.data = action.payload;
+        }
+      )
+      .addCase(TotalizadoresTypes.FAILURE, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.data = null;
+      })
+      .addCase(TotalizadoresTypes.CLEAR, (state) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.data = null;
+      });
+  }
+);
+
+export const TotalizadoresCreators = {
+  request: () => ({ type: TotalizadoresTypes.REQUEST }),
+  success: (data: TotalizadoresData) => ({
+    type: TotalizadoresTypes.SUCCESS,
+    payload: data,
+  }),
+  failure: () => ({ type: TotalizadoresTypes.FAILURE }),
+  clear: () => ({ type: TotalizadoresTypes.CLEAR }),
+};

@@ -1,8 +1,9 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import viacepReducer from "../ducks";
+import { authReducer, totalizadoresReducer } from "../ducks";
 
 const rootReducer = combineReducers({
-  viacep: viacepReducer,
+  Login: authReducer,
+  totalizadores: totalizadoresReducer,
 });
 
 export default rootReducer;

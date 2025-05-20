@@ -1,32 +1,4 @@
-export interface TipoUsuario {
-  id: number;
-  codigo: number;
-  nome: string;
-  descricao: string;
-}
-
-export interface AuthData {
-  id: number;
-  nome: string;
-  email: string;
-  token: string;
-  tipoUsuario: TipoUsuario;
-}
-
-export interface AuthState {
-  isLoading: boolean;
-  isError: boolean;
-  data: AuthData | null;
-}
-
-export interface Icone {
-  id: number;
-  nomeArquivo: string;
-  largura: number;
-  altura: number;
-}
-
-export interface Tema {
+export interface TemaDominado {
   id: number;
   nome: string;
   nomeHierarquia: string;
@@ -39,10 +11,15 @@ export interface Tema {
   qtdCartasCasosClinicos: number;
   qtdTotaisCartasCasosClinicos: number;
   resumo: string;
-  listaDeImagem: string[];
-  icone: Icone;
-  descendentes: unknown[];
-  descendencia: unknown[];
+  listaDeImagem: any[];
+  icone: {
+    id: number;
+    nomeArquivo: string;
+    largura: number;
+    altura: number;
+  };
+  descendentes: any[];
+  descendencia: any[];
   cardsDominados: number;
   qtdQuestoesProvaDeTitulo: number;
   qtdQuestoesOutrosCursos: number;
@@ -62,12 +39,6 @@ export interface TotalizadoresData {
   qtdAcertosFlashcardsCadosClinicos: number;
   qtdErrosFlashcardsCadosClinicos: number;
   questoesFavoritadas: number[];
-  temaDominado: Tema;
-  temaMenosDominado: Tema;
-}
-
-export interface TotalizadoresState {
-  isLoading: boolean;
-  isError: boolean;
-  data: TotalizadoresData | null;
+  temaDominado: TemaDominado;
+  temaMenosDominado: TemaDominado;
 }

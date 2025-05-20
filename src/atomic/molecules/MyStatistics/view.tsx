@@ -1,68 +1,63 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { MyStatisticsViewProps } from "./Models";
 
-interface MyStatisticsViewProps {}
-
-const MyStatisticsView: React.FC<MyStatisticsViewProps> = ({}) => {
+const MyStatisticsView: React.FC<MyStatisticsViewProps> = ({
+  accuracyRate,
+  temaMaisDominado,
+  temaMenosDominado,
+  qtdRespondidas,
+  qtdAcertos,
+}) => {
   return (
     <View style={{ padding: 16, borderRadius: 8 }}>
       <View
         style={{
-          borderBottomWidth: 1.5,
-          borderBottomColor: "#E3E8EF",
-          paddingBottom: 8,
+          flexDirection: "row",
+          justifyContent: "space-between",
           marginBottom: 8,
         }}
       >
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ color: "#000" }}>Total de questões respondidas</Text>
-          <Text style={{ color: "#000", fontWeight: "bold" }}>370</Text>
-        </View>
+        <Text>Total de questões respondidas</Text>
+        <Text style={{ fontWeight: "bold" }}>{qtdRespondidas}</Text>
       </View>
+
       <View
         style={{
-          borderBottomWidth: 1.5,
-          borderBottomColor: "#E3E8EF",
-          paddingBottom: 8,
+          flexDirection: "row",
+          justifyContent: "space-between",
           marginBottom: 8,
         }}
       >
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ color: "#000" }}>Questões corretas</Text>
-          <Text style={{ color: "#000", fontWeight: "bold" }}>289</Text>
-        </View>
+        <Text>Questões corretas</Text>
+        <Text style={{ fontWeight: "bold" }}>{qtdAcertos}</Text>
       </View>
+
       <View
         style={{
-          borderBottomWidth: 1.5,
-          borderBottomColor: "#E3E8EF",
-          paddingBottom: 8,
+          flexDirection: "row",
+          justifyContent: "space-between",
           marginBottom: 8,
         }}
       >
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ color: "#000" }}>Média de acertos</Text>
-          <Text style={{ color: "#000", fontWeight: "bold" }}>78%</Text>
-        </View>
+        <Text>Média de acertos</Text>
+        <Text style={{ fontWeight: "bold" }}>{accuracyRate}%</Text>
       </View>
+
       <View
         style={{
-          borderBottomWidth: 1.5,
-          borderBottomColor: "#E3E8EF",
-          paddingBottom: 8,
+          flexDirection: "row",
+          justifyContent: "space-between",
           marginBottom: 8,
         }}
       >
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ color: "#000" }}>Tema mais dominado</Text>
-          <Text style={{ color: "#000", fontWeight: "bold" }}>
-            Infectologia
-          </Text>
-        </View>
+        <Text>Tema mais dominado</Text>
+        <Text style={{ fontWeight: "bold" }}>{temaMaisDominado}</Text>
       </View>
+
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text style={{ color: "#000" }}>Tema menos dominado</Text>
-        <Text style={{ color: "#000", fontWeight: "bold" }}>Neurologia</Text>
+        <Text>Tema menos dominado</Text>
+        <Text style={{ fontWeight: "bold" }}>{temaMenosDominado}</Text>
       </View>
     </View>
   );
