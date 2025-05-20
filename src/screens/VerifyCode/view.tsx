@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   Text,
@@ -17,6 +18,8 @@ const VerifyCodeView: React.FC<VerifyCodeViewProps> = ({
   setIsFocused,
   inputs,
   maskedEmail,
+  loading,
+  onResendCode,
 }) => {
   return (
     <KeyboardAvoidingView
@@ -76,10 +79,20 @@ const VerifyCodeView: React.FC<VerifyCodeViewProps> = ({
             ))}
           </View>
 
-          <TouchableOpacity style={{ marginTop: 20 }}>
-            <Text style={{ color: "#0C78B6", fontSize: 16, fontWeight: 600 }}>
-              Reenviar código
-            </Text>
+          <TouchableOpacity
+            style={{ marginTop: 20 }}
+            onPress={onResendCode}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color="#0C78B6" />
+            ) : (
+              <Text
+                style={{ color: "#0C78B6", fontSize: 16, fontWeight: "600" }}
+              >
+                Reenviar código
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>

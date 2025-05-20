@@ -2,7 +2,18 @@
 
 Este é um projeto [Expo](https://expo.dev) criado com [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Primeiros passos
+## 🧰 Tecnologias utilizadas
+
+Este projeto foi construído com as seguintes tecnologias e bibliotecas:
+
+- [React Native](https://reactnative.dev/) — Framework para desenvolvimento mobile nativo com JavaScript/TypeScript
+- [Expo](https://expo.dev/) — Plataforma que facilita o desenvolvimento e build de apps React Native
+- [TypeScript](https://www.typescriptlang.org/) — Superset do JavaScript com tipagem estática
+- [Redux Toolkit](https://redux-toolkit.js.org/) — Conjunto de ferramentas para simplificar a gestão de estado global no Redux
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk) — Middleware para lidar com chamadas assíncronas no Redux
+- [Expo Router](https://expo.github.io/router/docs) — Navegação baseada em arquivos no estilo Next.js para apps Expo/React Native
+
+## ▶️ Primeiros passos
 
 1. Instale as dependências:
 
@@ -23,28 +34,13 @@ Na saída do terminal, você verá opções para abrir o app em:
 - um [simulador iOS](https://docs.expo.dev/workflow/ios-simulator/)
 - o [Expo Go](https://expo.dev/go), um ambiente limitado para testar o desenvolvimento com o Expo
 
-Você pode começar a desenvolver editando os arquivos dentro do diretório **app**. Este projeto utiliza [roteamento baseado em arquivos](https://docs.expo.dev/router/introduction).
+## 📁 Estrutura do projeto
 
-## Criar um projeto limpo
+O projeto segue uma organização modular, com destaque para MVC:
 
-Quando estiver pronto, execute:
-
-```bash
-npm run reset-project
-```
-
-Esse comando moverá o código de exemplo para o diretório **app-example** e criará um diretório **app** em branco para você começar a desenvolver.
-
-## Saiba mais
-
-Para aprender mais sobre como desenvolver seu projeto com o Expo, confira os seguintes recursos:
-
-- [Documentação do Expo](https://docs.expo.dev/): Aprenda os fundamentos ou aprofunde-se com nossos [guias](https://docs.expo.dev/guides).
-- [Tutorial do Expo](https://docs.expo.dev/tutorial/introduction/): Siga um passo a passo para criar um projeto que funciona em Android, iOS e na web.
-
-## Junte-se à comunidade
-
-Junte-se à nossa comunidade de desenvolvedores que criam apps universais.
-
-- [Expo no GitHub](https://github.com/expo/expo): Veja nossa plataforma open source e contribua.
-- [Comunidade no Discord](https://chat.expo.dev): Converse com outros usuários do Expo e tire suas dúvidas.
+- `redux/` — configuração da store e ducks (actions/reducers)
+- `redux/thunks/` — operações assíncronas usando `redux-thunk`
+- `atomic/` — componentes reutilizáveis organizados por nível de composição (atoms, molecules)
+- `views/` — para exibição o
+- `index/` — para lógicas
+- `models/` — para tipagens

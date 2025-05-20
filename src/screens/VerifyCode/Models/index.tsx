@@ -12,4 +12,6 @@ export type VerifyCodeViewProps = {
   inputs: React.RefObject<(TextInput | null | undefined)[]>;
   setCode: React.Dispatch<React.SetStateAction<string[]>>;
   maskedEmail: string | string[];
+  loading: boolean;
+  onResendCode: () => Promise<void>;
 };

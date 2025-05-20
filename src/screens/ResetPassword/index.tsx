@@ -1,11 +1,17 @@
-import { useRouter } from "expo-router";
+import { AppDispatch } from "@/src/redux/store/store";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Alert } from "react-native";
+import { useDispatch } from "react-redux";
+import { fetchModificarSenhaThunk } from "../../redux/thunks/ResetPassword";
 import { PasswordValidationResult, ResetPasswordProps } from "./Models";
 import ResetPasswordView from "./view";
 
 const ResetPassword = ({}: ResetPasswordProps) => {
   const route = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const { email, token } = useLocalSearchParams();
+
   const [newPassword, setNewPassword] = useState("");
   const [previousPassword, setPreviousPassword] = useState<string | undefined>(
     "oldSecurePass!"
@@ -41,7 +47,7 @@ const ResetPassword = ({}: ResetPasswordProps) => {
     validate(newPassword);
   }, [newPassword, previousPassword]);
 
-  const handleResetPassword = () => {
+  const handleResetPassword = async () => {
     if (
       validationResults.hasMinLength &&
       validationResults.hasNumber &&
@@ -49,7 +55,15 @@ const ResetPassword = ({}: ResetPasswordProps) => {
       validationResults.hasSpecialChar &&
       validationResults.isDifferentFromPrevious
     ) {
-      route.push("/reset-password-success");
+      const result = await dispatch(
+        fetchModificarSenhaThunk(email as string, token as string, newPassword)
+      );
+
+      if (result.success) {
+        route.push("/reset-password-success");
+      } else {
+        Alert.alert("Erro", result.mensagem || "Falha ao modificar a senha.");
+      }
     } else {
       Alert.alert(
         "Desculpe",
@@ -72,16 +86,15 @@ const ResetPassword = ({}: ResetPasswordProps) => {
       );
     }
   };
+
   return (
-    <>
-      <ResetPasswordView
-        newPassword={newPassword}
-        setNewPassword={setNewPassword}
-        validationResults={validationResults}
-        handleResetPassword={handleResetPassword}
-        route={route}
-      />
-    </>
+    <ResetPasswordView
+      newPassword={newPassword}
+      setNewPassword={setNewPassword}
+      validationResults={validationResults}
+      handleResetPassword={handleResetPassword}
+      route={route}
+    />
   );
 };
 
