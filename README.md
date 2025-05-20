@@ -53,5 +53,5 @@ O projeto segue uma organização modular, com destaque para MVC:
 - `redux/thunks/` — operações assíncronas usando `redux-thunk`
 - `atomic/` — componentes reutilizáveis organizados por nível de composição (atoms, molecules)
 - `views/` — para exibição
-- `index/` — para lógicas
+- `index/` — para lógicasj
 - `models/` — para tipagens
